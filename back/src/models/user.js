@@ -21,16 +21,23 @@ module.exports = (sequelize) => {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: true,
+            validate: {
+                isEmail: true
+            }
         },
         admin: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         },
         points: {
             type: DataTypes.INTEGER,
             defaultValue: 0
+        },
+        evaluator: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         }
-
     },
     {sequelize, timestamps: false});
 }

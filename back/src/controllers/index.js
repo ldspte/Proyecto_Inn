@@ -3,8 +3,6 @@ const { usersInfo, ideaInfo, tableInfo } = require('./dbInfo');
 const {Enterprice, Table } = require('../db')
 
 
-let id = 0;
-
 
 const getinfoenterprice = async() => {
     const info = await Enterprice;
@@ -40,15 +38,30 @@ const getSales = async() => {
     return sales;
 }
 
+const updateSales = async(sales, utility) => {
+    Enterprice.sales = sales;
+    Enterprice.utility = utility;
+    return await Enterprice.sales.concat(Enterprice.utility);
+}
+
 const getUtility = async() => {
     const utility = await Enterprice.utility;
     return utility;
 }
 
+const updateTable = async(id, name , definition) => {
+    const tables =  await tableInfo();
+    const updateTable = await tables.findByPk(id);
+    updateTable.name = name;
+    updateTable.definition = definition;
+    return updateTable;
+}
 
 
 const deleteTable = async(id) => {
-
+    const tables = await tableInfo();
+    const deleteTable = await tables.findByPk(id);
+    return await axios.delete(deleteTable);
 }
 
 
@@ -65,6 +78,8 @@ module.exports={
     getTable,
     getSales,
     getUtility,
+    updateSales,
+    updateTable,
     deleteTable
 
 }
