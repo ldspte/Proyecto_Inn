@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { 
-    getinfoenterprice, 
+    getinfoenterprice,
     getSentence,
     updateSentence,
     getSales,

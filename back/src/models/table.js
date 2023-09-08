@@ -17,6 +17,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        pressure: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     },
     {sequelize, timestamps: false});
 }
